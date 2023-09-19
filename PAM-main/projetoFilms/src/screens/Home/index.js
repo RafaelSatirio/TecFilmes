@@ -13,6 +13,7 @@ import React,{useState, useeffect, useEffect} from "react";
 export default function App() {
 
 const [movies,setMovies] = useState ([]);
+const [Series,setSeries] = useState ([]);
 
 useEffect(()=> {
 
@@ -30,9 +31,30 @@ useEffect(()=> {
 
       }
 
-      getMovies();
+},[])
+
+useEffect(()=> {
+
+
+      async function getSeries(){
+            try{
+                  const response = await fetch("https://api.themoviedb.org/3/tv/popular?api_key=500d008d084d3903b3cb4305c1adbe9b&language=pt-br");
+                  const data = await response.json();
+
+                  console.log(data.results)
+                  setSeries(data.results)
+            }
+            catch(error){
+                  console.error("REQUISIÇÃO FALHOU",error)
+            }
+
+      }
+
+      getSeries();
 
 },[])
+
+
 
   return (
 
@@ -111,11 +133,11 @@ useEffect(()=> {
 
         
 
-        titulo = {item.nome}
+        titulo = {item.title}
 
-        nota = {item.nota}
+        nota = {item.vote_average}
 
-        imagem = {item.imagem}
+        imagem = {item.poster_path}
 
         />
 

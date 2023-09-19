@@ -8,7 +8,6 @@ import { useNavigation } from "@react-navigation/core";
 
 export default function CardMovies({titulo,nota,imagem}) {
 
-
     const navigation = useNavigation()
 
   return (
