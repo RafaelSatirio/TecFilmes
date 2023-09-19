@@ -29,12 +29,13 @@ useEffect(()=> {
                   console.error("REQUISIÇÃO FALHOU",error)
             }
 
+
       }
 
+      getMovies();
 },[])
 
 useEffect(()=> {
-
 
       async function getSeries(){
             try{
